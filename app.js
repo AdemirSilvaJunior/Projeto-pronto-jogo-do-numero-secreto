@@ -1,5 +1,5 @@
 alert('Boas vindas ao jogo do número secreto');
-let numeroMaxino = 1000;
+let numeroMaxino = 10;
 let numeroSecreto;
 let chute;
 let tentativas;
