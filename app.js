@@ -15,6 +15,13 @@ function exibirMensagemAcerto() {
     document.getElementById('mensagemAcerto').style.display = 'block';
 }
 
+// Função para exibir a mensagem de acerto e rolar a página
+function exibirMensagemAcerto() {
+    document.getElementById('mensagemAcerto').style.display = 'block';
+    // Rolar a página até a mensagem de acerto
+    document.getElementById('mensagemAcerto').scrollIntoView({ behavior: 'smooth' });
+}
+
 // Função para esconder a mensagem de acerto
 function esconderMensagemAcerto() {
     document.getElementById('mensagemAcerto').style.display = 'none';
@@ -27,12 +34,16 @@ function reiniciarJogo() {
     iniciarJogo();
 }
 
-// Função para iniciar o jogo
+/// Função para iniciar o jogo
 function iniciarJogo() {
     chute = null;
-    //enquanto o chute não for igual ao número secreto
+    // enquanto o chute não for igual ao número secreto
     while (chute != numeroSecreto) {
         chute = prompt(`Escolha um número entre 1 e ${numeroMaxino}`);
+        // se chute for null, indica que o usuário pressionou "Cancelar"
+        if (chute === null) {
+            return; // interrompe o processo sem exibir nenhum alerta
+        }
         // se chute for igual ao número secreto
         if (chute == numeroSecreto) {
             exibirMensagemAcerto();
@@ -43,13 +54,14 @@ function iniciarJogo() {
             } else {
                 alert(`O número secreto é maior que o ${chute}`);
             }
-            tentativas++
+            tentativas++;
         }
     }
 
     let palavraTentativa = tentativas > 1 ? 'tentativas' : 'tentativa';
     alert(`Isso aí! Você descobriu o número secreto ${numeroSecreto} com ${tentativas} ${palavraTentativa}`);
 }
+
 
 // Chamada da função para iniciar um novo jogo
 novoJogo();
